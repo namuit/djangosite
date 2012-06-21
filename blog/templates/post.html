@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load comments %}
+{% block content %}
+<h2>{{ post.title }}</h2>
+<p>{{ post.timestamp|date:"l j F Y"}}</p>
+<p>{{ post.body }}</p>
+<br>
+{% get_comment_form for post as form %}
+<table>
+  <form action="{% comment_form_target %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <tr>
+      <td colspan="2">
+        <input type="submit" name="submit" value="Invia">
+        <input type="submit" name="preview" value="Anteprima">
+      </td>
+    </tr>
+  </form>
+</table>
+<br>
+{% render_comment_list for post %}
+
+
+
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load comments %}
+{% block content %}
+{% for post in posts %}
+<a href="post/{{ post.id }}"><h2>{{ post.title }}</h2></a>
+<p>{{ post.timestamp|date:"l j F Y"}}</p>
+<p>{{ post.body }}</p>
+{% get_comment_count for post as comment_count %}
+<p>Questo post ha {{ comment_count }} commenti.</p>
+{% endfor %}
+{% endblock %}
